@@ -4,7 +4,6 @@ import Image from "next/image"
 import {NFTAttributes} from "@/types/nft";
 import {ipfsGateway} from "@/lib/handleIpfsImage"
 import { MdVerified } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 
 
@@ -36,7 +35,7 @@ const DisplayNft = async ({ promise }: { promise: Promise<{data:NFTAttributes,id
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 p-4" >
-      {tokens.map((token, index) => (
+      {tokens.map((token) => (
         <Card
           
           key={token.id}

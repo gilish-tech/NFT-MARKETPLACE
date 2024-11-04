@@ -1,13 +1,13 @@
 "use client"
 
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSwiper } from 'swiper/react';
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import { Card,CardContent } from '../ui/card';
+import { Card} from '../ui/card';
 
 import 'swiper/css';
 
@@ -37,14 +37,6 @@ const TRENDING_COLLECTIONS = [
 
 const SwiperButtonNext = ({value}:{value:number}) => {
   const swiper = useSwiper();
-
-  useEffect(()=>{
-    setTimeout(()=>{
-     handleClick      
-    },100)
-    
-  },[])
-  
   const handleClick = ()=>{
     console.log("here",swiper.activeIndex)      
     if (swiper.activeIndex == value - 1){
@@ -55,6 +47,9 @@ const SwiperButtonNext = ({value}:{value:number}) => {
     }
     
   }
+
+ 
+  
   return <button className='bg-gray-800 text-5xl absolute bottom-[50%] z-10 right-0 translate-y-[50%]' onClick={handleClick} ><MdNavigateNext /></button>;
 };
 const SwiperButtonPrev = () => {

@@ -1,6 +1,6 @@
 import React,{Suspense} from 'react'
 import LeftBar from '@/components/LeftBar'
-import {convertTokenUriJson} from "@/lib/handleIpfsImage"
+
 import {getNfts} from "@/lib/handleNft"
 import DisplayNft from '@/components/Nft/DisplayNft'
 import { unstable_cache } from 'next/cache'

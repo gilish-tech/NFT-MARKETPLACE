@@ -18,7 +18,7 @@ const walletNameToImage = {
 
 
 
-export const DisConnectWalletButton = ({small}:{small?:boolean})=>{
+export const DisConnectWalletButton = ()=>{
     const {disconnect} = useDisconnect()
     return(
       <button className='bg-gray-700 hover:bg-gray-500/30 text-white px-6 py-2 rounded-full transition-all duration-200'

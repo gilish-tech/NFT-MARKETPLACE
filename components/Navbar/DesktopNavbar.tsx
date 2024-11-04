@@ -1,23 +1,22 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FaSearch } from "react-icons/fa";
-import Button from '../Button';
 import { IoIosNotifications } from "react-icons/io";
 import { FaCrown } from "react-icons/fa6";
 import Image from "next/image"
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
-import { Connector, useConnect, useAccount, useBalance, useSendTransaction } from 'wagmi'
+import {   useAccount, useBalance, useSendTransaction } from 'wagmi'
 import {ConnectWalletButton,DisConnectWalletButton} from '../ui/WalletButton';
 // import {use} from "wagmi"
 import { parseEther } from 'viem';
 
 
 const Navbar = () => {
-  const { connectors, connect } = useConnect()
+  
   const account = useAccount()
-  const { data: hash, sendTransaction } = useSendTransaction()
+  const {  sendTransaction } = useSendTransaction()
 
   const balance = useBalance({
     address: account.address

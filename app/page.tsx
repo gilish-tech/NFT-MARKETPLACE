@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import LeftBar from "@/components/LeftBar";
 import RightBar from "@/components/RightBar";
 import Body from "@/components/homePage/Body";
