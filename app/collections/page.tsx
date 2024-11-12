@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{Suspense} from 'react'
 import LeftBar from '@/components/LeftBar'
 import {getMintedNftsData} from "@/lib/action"
 import DisplayNft from '@/components/Nft/DisplayNft'
+import Loading from '@/components/Loading'
 const page = async() => {
   const promise = getMintedNftsData()
   return (
@@ -10,7 +11,9 @@ const page = async() => {
            <LeftBar/>
         </div>
        <div className="w-full lg:w-4/5 ">
-         <DisplayNft promise={promise} bought/>
+       <Suspense fallback={<Loading/>}>
+           <DisplayNft promise={promise} bought/>
+       </Suspense>
        </div>
     </div>
   )

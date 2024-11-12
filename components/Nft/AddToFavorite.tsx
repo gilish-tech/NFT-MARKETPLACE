@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { MdFavoriteBorder } from "react-icons/md";
-import { deleteFavorite } from '@/lib/action';
+import { deleteFavorite,addToFavorite } from '@/lib/action';
 
 import { MdFavorite } from "react-icons/md";
 import { useRouter } from 'next/navigation'
@@ -33,6 +33,8 @@ const AddToFavorite = ({nftId}:{nftId:string |undefined, favorites:string[]}) =>
       // throw ("err")
       favorites.push(nftId)
       addFavorite(nftId)
+      await addToFavorite(nftId!)
+      
       router.refresh()
       toast({
         
