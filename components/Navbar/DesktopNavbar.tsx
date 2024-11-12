@@ -10,12 +10,17 @@ import { FaEthereum } from "react-icons/fa";
 import {   useAccount, useBalance, useSendTransaction } from 'wagmi'
 import {ConnectWalletButton,DisConnectWalletButton} from '../ui/WalletButton';
 // import {use} from "wagmi"
+import {displayAddress} from "@/lib/utils"
 import { parseEther } from 'viem';
+import { useUserStore } from '@/store/userStore';
+import { RxAvatar } from "react-icons/rx";
+import { formatEthBalance } from '@/lib/utils';
 
 
 const Navbar = () => {
   
-  const account = useAccount()
+  const account = useAccount();
+  const user = useUserStore((state)=>state.user)
   const {  sendTransaction } = useSendTransaction()
 
   const balance = useBalance({
@@ -40,7 +45,7 @@ const Navbar = () => {
           {/* this is the title  */}
 
           <div className="flex gap-2">
-            <Image height={200} width={200} alt="logo" src="/images/logo.png" className=' w-8 h-8 rounded-full object-cover' />
+            <Image height={32} width={32} alt="logo" src="/images/logo.png" className=' w-8 h-8 rounded-full object-cover' />
 
             <h1 className='hidden lg:block lg:text-[25px] tracking-tight text-white font-bold '>GILISH COLLS</h1>
           </div>
@@ -64,7 +69,7 @@ const Navbar = () => {
           {/* display account balance */}
 
           {
-            account.address ? (
+            user?.walletAddress ? (
 
               // <Button text={`${balance.data?.formatted}`} icon={< FaEthereum />} />
               <DisConnectWalletButton/>
@@ -91,20 +96,44 @@ const Navbar = () => {
 
           {/* Display user Profile */}
 
+          {
+            user?.walletAddress &&(
+              <div className="hidden lg:flex gap-3 items-center">
+                {
+                  user.profilePhoto?(
 
-          <div className="hidden lg:flex gap-3 items-center">
-            <Image src="/images/profile.png" alt='' width={28} height={28} className='rounded-full' />
+                    <Image src={user.profilePhoto} alt='' width={28} height={28} className='rounded-full' />
+                  ):(
 
-            <div className="hidden lg:flex flex-col justify-center ">
-              <p className='text-[14px]' onClick={() => sendTransaction({ to: "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0", value: parseEther("100") })}>Gilberto Diamond</p>
-              <div className="flex items-center text-[12px] text-gray-200">
-                < FaEthereum />
-                <p className=''>{balance.data?.formatted}</p>
+                    <RxAvatar  className='w-7 h-7 rounded-full text-white/80'/>
+
+                  )
+                }
+
+                <div className="hidden lg:flex flex-col justify-center ">
+                  {
+                    user?.name ?(
+                      
+                      <p className='text-[14px]' onClick={() => sendTransaction({ to: "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0", value: parseEther("100") })}>{user?.name}</p>
+                    ):(
+
+                      <p className='text-[14px]' onClick={() => sendTransaction({ to: "0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0", value: parseEther("100") })}>{displayAddress(user.walletAddress)}</p>
+                    )
+                  }
+                  <div className="flex items-center text-[12px] text-gray-200">
+                    < FaEthereum />
+                     
+                    <p className=''>{formatEthBalance(balance.data?.value || BigInt(0))}</p>
+                  </div>
+                </div>
+                <IoMdArrowDropdown />
+
               </div>
-            </div>
-            <IoMdArrowDropdown />
 
-          </div>
+            )
+          }
+
+
 
         </div>
 

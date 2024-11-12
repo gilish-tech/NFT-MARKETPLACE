@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar"
 import { WagmiProvider } from 'wagmi'
 import ReactQueryProvider from "@/components/ReactQueryProvider"
 import {config} from "@/config"
+import { Toaster } from "@/components/ui/toaster"
 
 
 const geistSans = localFont({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <Navbar/>
 
         {children}
+        <Toaster />
         </ReactQueryProvider>
         </WagmiProvider>
       </body>

@@ -1,7 +1,7 @@
 "use client"
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSwiper } from 'swiper/react';
@@ -37,6 +37,10 @@ const TRENDING_COLLECTIONS = [
 
 const SwiperButtonNext = ({value}:{value:number}) => {
   const swiper = useSwiper();
+  useEffect(()=>{
+    setTimeout(()=>{swiper.slideNext()},1000)
+
+  },[swiper])
   const handleClick = ()=>{
     console.log("here",swiper.activeIndex)      
     if (swiper.activeIndex == value - 1){
@@ -50,11 +54,11 @@ const SwiperButtonNext = ({value}:{value:number}) => {
 
  
   
-  return <button className='bg-gray-800 text-5xl absolute bottom-[50%] z-10 right-0 translate-y-[50%]' onClick={handleClick} ><MdNavigateNext /></button>;
+  return <button className='rounded-full bg-gray-900 text-4xl absolute bottom-[50%] z-10 right-0 translate-y-[50%] hover:bg-gray-600 text-white/70' onClick={handleClick} ><MdNavigateNext /></button>;
 };
 const SwiperButtonPrev = () => {
   const swiper = useSwiper();
-  return <button className='bg-gray-800 text-5xl absolute top-[50%] z-10 left-0 translate-y-[-50%]' onClick={() => swiper.slidePrev()} ><GrFormPrevious /></button>;
+  return <button className='rounded-full bg-gray-900 text-4xl absolute top-[50%] z-10 left-0 translate-y-[-50%] hover:bg-gray-600 text-white/70' onClick={() => swiper.slidePrev()} ><GrFormPrevious /></button>;
 };
 
 
