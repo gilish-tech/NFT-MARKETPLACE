@@ -30,7 +30,7 @@ model Favorite {
   id        String   @id @default(uuid()) // Primary key as UUID string
   nftId     String   // Field for storing the NFT ID
   createdAt DateTime @default(now()) // Automatically set to the current timestamp
-  user     User  @relation(fields: [userId],references: [id])
+  user     User  @relation(fields: [userId],references: [id],onDelete: Cascade)
   userId  String
 
   @@map("favorites") // Optional: this maps the Prisma model to a table called "favorites" in the database
@@ -41,7 +41,7 @@ model Favorite {
 model MintedNft{
     id        String   @id @default(uuid())
     hash String 
-    user User @relation(fields: [userId],references: [id])
+    user User @relation(fields: [userId],references: [id],onDelete: Cascade)
     userId String
     nftId String
 

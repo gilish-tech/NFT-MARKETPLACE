@@ -15,7 +15,9 @@ const getNftPrice = async(tokenId: string)=>{
     const contractAddress = process.env.NFT_CONTRACT_ADDRESS as `0x${string}`;
     const contract = new ethers.Contract(contractAddress, abi, providers);
     const price = await contract.getPriceOfNft(tokenId)
+    console.log(price,"priceoo")
     const formatted_price = ethers.formatUnits(price.toString(),18)
+    console.log(formatted_price,"pric fm")
     return formatted_price
     
 

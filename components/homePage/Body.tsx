@@ -37,8 +37,13 @@ const TRENDING_COLLECTIONS = [
 
 const SwiperButtonNext = ({value}:{value:number}) => {
   const swiper = useSwiper();
+
   useEffect(()=>{
-    setTimeout(()=>{swiper.slideNext()},1000)
+    const interval = setInterval(()=>{handleClick()},3000)
+
+    return ()=>{
+      clearInterval(interval)
+    }
 
   },[swiper])
   const handleClick = ()=>{
