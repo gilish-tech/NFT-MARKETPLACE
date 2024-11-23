@@ -81,9 +81,10 @@ The application is deployed using **Vercel**. You can access the live demo at [G
 ## Technologies Used
 
 - **Next.js:** For server-side rendering and React-based UI.
+- **Tailwind** For styling.
 - **Cloudinary:** For handling image uploads.
 - **Ethereum & Sepolia Testnet:** Blockchain marketplace deployment.
-- **Web3.js/Ethers.js:** For interacting with the smart contract.
+- **wagmi/Ethers.js:** For interacting with the smart contract.
 
 ---
 
